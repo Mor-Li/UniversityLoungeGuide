@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生职业规划咨询系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #3498db;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .student-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .student-card h3 {
+            margin-top: 0;
+        }
+        .student-info {
+            margin-bottom: 15px;
+        }
+        .student-info p {
+            margin: 5px 0;
+        }
+        .student-question {
+            margin-bottom: 15px;
+        }
+        .appointment-time {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .post-action {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .post-action button {
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .post-action button.replied {
+            background-color: #2ecc71;
+        }
+        .post-action button:hover {
+            background-color: #3498db;
+        }
+        .reply-message {
+            margin-top: 10px;
+            font-style: italic;
+            color: #2ecc71;
+        }
+
+        /* 弹出框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 400px;
+        }
+        .modal-content textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* 响应式设计：小屏幕设备时调整为一行一个卡片 */
+        @media (max-width: 768px) {
+            .student-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 标题部分 -->
+<div class="header">
+    <h1>学生职业规划咨询系统</h1>
+    <p>展示学生的职业困惑及预约时间，帮助职业规划师提供咨询</p>
+</div>
+
+<!-- 卡片容器部分 -->
+<div class="container">
+    <!-- 学生卡片 1 -->
+    <div class="student-card" data-student="张伟">
+        <h3>学生信息</h3>
+        <div class="student-info">
+            <p><strong>姓名：</strong> 张伟</p>
+            <p><strong>年龄：</strong> 23岁</p>
+            <p><strong>毕业年份：</strong> 2025年</p>
+            <p><strong>研究方向：</strong> 人工智能与机器学习</p>
+        </div>
+        <div class="student-question">
+            <p><strong>咨询问题：</strong> 我对未来的职业发展方向有困惑，不确定是否应该继续在技术方向深耕，还是转向管理岗位。希望能够得到一些指导。</p>
+        </div>
+        <p class="appointment-time"><strong>希望预约的时间：</strong> 2024年10月5日 下午2点</p>
+        <div class="post-action">
+            <button onclick="openReplyModal(this)">回复学生</button>
+            <div class="reply-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- 学生卡片 2 -->
+    <div class="student-card" data-student="李芳">
+        <h3>学生信息</h3>
+        <div class="student-info">
+            <p><strong>姓名：</strong> 李芳</p>
+            <p><strong>年龄：</strong> 22岁</p>
+            <p><strong>毕业年份：</strong> 2024年</p>
+            <p><strong>研究方向：</strong> 数据科学与大数据技术</p>
+        </div>
+        <div class="student-question">
+            <p><strong>咨询问题：</strong> 我在求职过程中遇到了一些困难，不知道如何提升自己的面试技巧和简历优化，想请教相关的建议。</p>
+        </div>
+        <p class="appointment-time"><strong>希望预约的时间：</strong> 2024年10月7日 上午10点</p>
+        <div class="post-action">
+            <button onclick="openReplyModal(this)">回复学生</button>
+            <div class="reply-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- 学生卡片 3 -->
+    <div class="student-card" data-student="王强">
+        <h3>学生信息</h3>
+        <div class="student-info">
+            <p><strong>姓名：</strong> 王强</p>
+            <p><strong>年龄：</strong> 24岁</p>
+            <p><strong>毕业年份：</strong> 2023年</p>
+            <p><strong>研究方向：</strong> 计算机视觉</p>
+        </div>
+        <div class="student-question">
+            <p><strong>咨询问题：</strong> 我打算申请博士项目，但不知道如何选择合适的导师和研究课题，想请教如何做出正确的决策。</p>
+        </div>
+        <p class="appointment-time"><strong>希望预约的时间：</strong> 2024年10月8日 下午3点</p>
+        <div class="post-action">
+            <button onclick="openReplyModal(this)">回复学生</button>
+            <div class="reply-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- 学生卡片 4 -->
+    <div class="student-card" data-student="赵敏">
+        <h3>学生信息</h3>
+        <div class="student-info">
+            <p><strong>姓名：</strong> 赵敏</p>
+            <p><strong>年龄：</strong> 21岁</p>
+            <p><strong>毕业年份：</strong> 2025年</p>
+            <p><strong>研究方向：</strong> 自然语言处理</p>
+        </div>
+        <div class="student-question">
+            <p><strong>咨询问题：</strong> 我在实验中遇到了一些技术问题，特别是处理大规模文本数据时性能问题比较严重，想请教如何优化代码。</p>
+        </div>
+        <p class="appointment-time"><strong>希望预约的时间：</strong> 2024年10月9日 下午4点</p>
+        <div class="post-action">
+            <button onclick="openReplyModal(this)">回复学生</button>
+            <div class="reply-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- 学生卡片 5 -->
+    <div class="student-card" data-student="孙丽">
+        <h3>学生信息</h3>
+        <div class="student-info">
+            <p><strong>姓名：</strong> 孙丽</p>
+            <p><strong>年龄：</strong> 22岁</p>
+            <p><strong>毕业年份：</strong> 2024年</p>
+            <p><strong>研究方向：</strong> 机器人技术</p>
+        </div>
+        <div class="student-question">
+            <p><strong>咨询问题：</strong> 我在实习过程中遇到了团队协作的问题，感觉自己在沟通上有些欠缺，想要学习如何更好地融入团队。</p>
+        </div>
+        <p class="appointment-time"><strong>希望预约的时间：</strong> 2024年10月10日 上午11点</p>
+        <div class="post-action">
+            <button onclick="openReplyModal(this)">回复学生</button>
+            <div class="reply-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- 学生卡片 6 -->
+    <div class="student-card" data-student="陈杰">
+        <h3>学生信息</h3>
+        <div class="student-info">
+            <p><strong>姓名：</strong> 陈杰</p>
+            <p><strong>年龄：</strong> 25岁</p>
+            <p><strong>毕业年份：</strong> 2022年</p>
+            <p><strong>研究方向：</strong> 计算机网络安全</p>
+        </div>
+        <div class="student-question">
+            <p><strong>咨询问题：</strong> 我目前正在工作，但有转行的想法，不知道如何平衡目前的工作和进一步深造的需求，想寻求一些建议。</p>
+        </div>
+        <p class="appointment-time"><strong>希望预约的时间：</strong> 2024年10月11日 下午1点</p>
+        <div class="post-action">
+            <button onclick="openReplyModal(this)">回复学生</button>
+            <div class="reply-message" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 回复弹出框 -->
+<div id="replyModal" class="modal">
+    <div class="modal-content">
+        <h3>回复学生</h3>
+        <textarea id="replyText" placeholder="在这里输入回复内容..."></textarea>
+        <button onclick="submitReply()">确认回复</button>
+    </div>
+</div>
+
+<script>
+    let currentReplyButton = null;
+
+    // 打开回复弹出框
+    function openReplyModal(button) {
+        currentReplyButton = button;
+        const modal = document.getElementById('replyModal');
+        modal.style.display = 'flex';
+    }
+
+    // 提交回复
+    function submitReply() {
+        const replyText = document.getElementById('replyText').value;
+        if (replyText.trim() !== "") {
+            // 更新回复按钮和显示已回复内容
+            currentReplyButton.textContent = '已回复';
+            currentReplyButton.classList.add('replied');
+            const replyMessageDiv = currentReplyButton.nextElementSibling;
+            replyMessageDiv.textContent = '回复内容: ' + replyText;
+            replyMessageDiv.style.display = 'block';
+            
+            // 关闭弹出框
+            document.getElementById('replyModal').style.display = 'none';
+            document.getElementById('replyText').value = '';
+        } else {
+            alert('请输入回复内容');
+        }
+    }
+
+    // 点击外部关闭弹出框
+    window.onclick = function(event) {
+        const modal = document.getElementById('replyModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
