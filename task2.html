@@ -121,15 +121,42 @@
                 width: 100%;
             }
         }
+        .purpose {
+            width: 90%;
+            margin: 20px auto;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .purpose h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .purpose p {
+            color: #34495e;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
     </style>
 </head>
 <body>
 
 <!-- 标题部分 -->
 <div class="header">
-    <h1>学生职业规划咨询系统</h1>
-    <p>展示学生的职业困惑及预约时间，帮助职业规划师提供咨询</p>
+    <h1>个性化职业发展规划服务</h1>
+    <p>根据每个同学的专业背景、就业意向、已完成工作、兴趣爱好等，提供1V1的个性化职业发展规划订制服务。从长远目标开始，逆向制定阶段性任务，能够让同学们更加明确自身的发展路径，少走弯路，少做无用功，少些过度努力，用最少的精力实现价值最大化，有助于安心“躺平”。</p>
 </div>
+
+<!-- 目的和主旨部分
+<div class="purpose">
+    <h2></h2>
+    <p></p>
+</div> -->
 
 <!-- 卡片容器部分 -->
 <div class="container">
@@ -252,7 +279,7 @@
 <div id="replyModal" class="modal">
     <div class="modal-content">
         <h3>回复学生</h3>
-        <textarea id="replyText" placeholder="在这里输入回复内容..."></textarea>
+        <textarea id="replyText" placeholder="在这里输入回复内容..." style="width: 95%;"></textarea>
         <button onclick="submitReply()">确认回复</button>
     </div>
 </div>

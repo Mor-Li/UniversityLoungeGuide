@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>毕业通—你的安全躺平指南</title>
+    <style>
+        /* CSS 样式 */
+
+        body {
+            font-family: "微软雅黑", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 48px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #283593;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        nav ul li {
+            float: left;
+            width: 25%;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 0;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #1a237e;
+        }
+
+        section {
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .requirements-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .requirements-list h3 {
+            margin-top: 0;
+        }
+
+        .requirements-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            margin-bottom: 15px;
+        }
+
+        .requirements-list label {
+            display: flex;
+            align-items: center;
+        }
+
+        .requirements-list input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .feedback-container {
+            max-height: 330px;
+            overflow-y: auto;
+        }
+
+        .feedback-item {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .feedback-item h3 {
+            margin-top: 0;
+        }
+
+        .progress-bar {
+            background-color: #ddd;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            background-color: #3f51b5;
+            height: 25px;
+            width: 70%;
+        }
+
+        footer {
+            background-color: #283593;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* 响应式设计 */
+        @media screen and (max-width: 600px) {
+            nav ul li {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        // JavaScript 脚本
+        function toggleCompleted(checkbox) {
+            const status = checkbox.parentElement.querySelector('.completed');
+            if (checkbox.checked) {
+                status.textContent = '已完成';
+            } else {
+                status.textContent = '';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>毕业通</h1>
+        <p>你的安全躺平指南</p>
+        <nav>
+            <ul>
+                <li><a href="#home">首页</a></li>
+                <li><a href="#requirements">毕业要求</a></li>
+                <li><a href="#feedback">学长学姐反馈</a></li>
+                <li><a href="#progress">我的进度</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>欢迎来到毕业通</h2>
+        <p>在这里，您可以清晰地了解自己的毕业要求，查看他人经验，并实时跟踪自己的毕业进度。</p>
+    </section>
+
+    <section id="requirements">
+        <h2>毕业要求</h2>
+        <div class="requirements-list">
+            <h3>具体要求：</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" onchange="toggleCompleted(this)">
+                        <strong>学分要求：</strong>需修满 <span id="total-credits">39</span> 个学分，其中毕业论文占 <span id="thesis-credits">10</span> 个学分。
+                        <span class="completed"></span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" onchange="toggleCompleted(this)">
+                        <strong>毕业论文：</strong>需完成一篇不少于 <span id="thesis-words">8000</span> 字的毕业论文，通过答辩。
+                        <span class="completed"></span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" onchange="toggleCompleted(this)">
+                        <strong>学术活动：</strong>需参加不少于 <span id="academic-activities">20</span> 次学术讲座或活动，并提交相关报告。
+                        <span class="completed"></span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" onchange="toggleCompleted(this)">
+                        <strong>实习实践：</strong>完成至少 <span id="internship-weeks">8</span> 周的专业实习，并提交实习报告。
+                        <span class="completed"></span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" onchange="toggleCompleted(this)">
+                        <strong>语言要求：</strong>需通过 <span id="language-exam">英语四级</span> 或同等水平的语言考试。
+                        <span class="completed"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="feedback">
+        <h2>学长学姐反馈</h2>
+        <div class="feedback-container">
+            <div class="feedback-item">
+                <h3>计算机科学专业</h3>
+                <p>毕设通过率为95%，需要注意代码规范和创新性。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>经济学专业</h3>
+                <p>无小论文要求，修完学分、完成毕设即可。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>机械工程专业</h3>
+                <p>实验课成绩占比大，注意平时实验报告的质量。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>英语专业</h3>
+                <p>需通过专业四级考试，建议多练习听力和口语。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>数学与应用数学专业</h3>
+                <p>论文需要有一定的理论深度，建议提前确定导师和选题。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>法学专业</h3>
+                <p>需要完成法律实习，建议在大三暑假提前安排。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>建筑学专业</h3>
+                <p>设计作品集很重要，建议平时多积累优秀作品。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>环境科学专业</h3>
+                <p>需参与环保项目，增加实践经验。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>心理学专业</h3>
+                <p>实习和志愿服务经历是加分项，建议积极参与。</p>
+            </div>
+            <div class="feedback-item">
+                <h3>电子工程专业</h3>
+                <p>毕业设计需要结合硬件和软件，提前准备很重要。</p>
+            </div>
+            <!-- 更多反馈 -->
+        </div>
+    </section>
+
+    <section id="progress">
+        <h2>我的进度</h2>
+        <p>以下是您的毕业任务完成情况：</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 70%;"></div>
+        </div>
+        <ul>
+            <li>学分修读：已完成 <strong>80%</strong></li>
+            <li>必修课程：已完成 <strong>90%</strong></li>
+            <li>毕业论文：<strong>进行中</strong></li>
+            <li>实习要求：<strong>已完成</strong></li>
+            <li>学术活动：已参加 <strong>15/20</strong> 次</li>
+            <li>语言考试：<strong>未完成</strong></li>
+            <!-- 更多任务 -->
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 毕业通. 版权所有。</p>
+    </footer>
+</body>
+</html>

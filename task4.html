@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>朋辈交流树洞</title>
+    <style>
+        /* CSS 样式 */
+
+        body {
+            font-family: "微软雅黑", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        header {
+            background-color: #ff9022;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 48px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 24px;
+        }
+
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .post-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .post-form textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .post-form button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .post-form button:hover {
+            background-color: #e64a19;
+        }
+
+        .posts {
+            margin-top: 20px;
+        }
+
+        .post {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .post .content {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .post .actions {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post .actions button {
+            background-color: transparent;
+            border: none;
+            color: #ff5722;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .post .actions button:hover {
+            text-decoration: underline;
+        }
+
+        .post .actions span {
+            margin-left: 5px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .comments {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .comment {
+            margin-bottom: 10px;
+        }
+
+        .comment:last-child {
+            margin-bottom: 0;
+        }
+
+        .comment .comment-content {
+            font-size: 16px;
+        }
+
+        .comment .comment-author {
+            font-size: 14px;
+            color: #999;
+        }
+
+        footer {
+            background-color: #ff5722;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+    </style>
+    <script>
+        // JavaScript 脚本
+
+        let posts = [
+            {
+                content: "最近感觉学习压力很大，总是睡不好觉，有没有同感的同学？",
+                likes: 5,
+                comments: [
+                    { author: "匿名", content: "我也是，每天都好紧张。" },
+                    { author: "匿名", content: "一起加油，坚持就是胜利！" },
+                    { author: "匿名", content: "试着放松一下，出去散散步吧。" }
+                ]
+            },
+            {
+                content: "分享一个自己的小技巧，睡前听轻音乐，有助于放松心情。",
+                likes: 3,
+                comments: [
+                    { author: "匿名", content: "谢谢分享，我也试试看！" },
+                    { author: "匿名", content: "有推荐的音乐吗？" }
+                ]
+            },
+            {
+                content: "今天阳光很好，出去走走，心情也变得开朗了。",
+                likes: 4,
+                comments: [
+                    { author: "匿名", content: "真羡慕，我还在图书馆苦读。" },
+                    { author: "匿名", content: "适当放松很重要！" },
+                    { author: "匿名", content: "下次一起啊！" }
+                ]
+            }
+        ];
+
+        function renderPosts() {
+            const postsContainer = document.getElementById('posts');
+            postsContainer.innerHTML = '';
+            posts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post';
+
+                const contentElement = document.createElement('div');
+                contentElement.className = 'content';
+                contentElement.textContent = post.content;
+
+                const actionsElement = document.createElement('div');
+                actionsElement.className = 'actions';
+
+                const likeButton = document.createElement('button');
+                likeButton.innerHTML = '👍 +1';
+                likeButton.onclick = () => {
+                    posts[index].likes += 1;
+                    renderPosts();
+                };
+
+                const likesCount = document.createElement('span');
+                likesCount.textContent = post.likes;
+
+                actionsElement.appendChild(likeButton);
+                actionsElement.appendChild(likesCount);
+
+                // 评论部分
+                const commentsElement = document.createElement('div');
+                commentsElement.className = 'comments';
+
+                post.comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'comment';
+
+                    const commentContent = document.createElement('div');
+                    commentContent.className = 'comment-content';
+                    commentContent.textContent = comment.content;
+
+                    const commentAuthor = document.createElement('div');
+                    commentAuthor.className = 'comment-author';
+                    commentAuthor.textContent = `— ${comment.author}`;
+
+                    commentElement.appendChild(commentContent);
+                    commentElement.appendChild(commentAuthor);
+
+                    commentsElement.appendChild(commentElement);
+                });
+
+                postElement.appendChild(contentElement);
+                postElement.appendChild(actionsElement);
+                postElement.appendChild(commentsElement);
+
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        function addPost() {
+            const textarea = document.getElementById('postContent');
+            const content = textarea.value.trim();
+            if (content) {
+                posts.unshift({
+                    content: content,
+                    likes: 0,
+                    comments: []
+                });
+                textarea.value = '';
+                renderPosts();
+            } else {
+                alert('请填写内容后再发布。');
+            }
+        }
+
+        window.onload = function() {
+            renderPosts();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>朋辈交流树洞</h1>
+        <p>匿名分享你的心情，与同学们一起前行</p>
+    </header>
+
+    <main>
+        <div class="post-form">
+            <h2>发布你的心情</h2>
+            <textarea id="postContent" placeholder="在这里输入你的心情..."></textarea>
+            <button onclick="addPost()">发布</button>
+        </div>
+
+        <div class="posts" id="posts">
+            <!-- 动态加载帖子 -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 朋辈交流树洞. 版权所有。</p>
+    </footer>
+</body>
+</html>
