@@ -240,6 +240,7 @@ CMakeLists.txt.user
 *.thm
 *.fdb_latexmk
 *.fls
+*.mp4
 
 # TeXShop
 ############
