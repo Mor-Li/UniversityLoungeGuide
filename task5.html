@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>悠然校园</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+
+        .header {
+            background-color: #6bbf59;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .nav {
+            background-color: #4e9a06;
+            overflow: hidden;
+        }
+
+        .nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            background-color: #3b7d0b;
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            color: #4e9a06;
+            border-bottom: 2px solid #4e9a06;
+            padding-bottom: 10px;
+        }
+
+        .section p {
+            line-height: 1.8;
+            color: #333;
+            font-size: 16px;
+            text-indent: 2em;
+            margin-bottom: 20px;
+        }
+
+        .upload-form, .recommendation, .journal {
+            margin-top: 20px;
+        }
+
+        .upload-form label, .journal label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .upload-form input[type="file"], .journal textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .upload-form button, .journal button {
+            background-color: #6bbf59;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .upload-form button:hover, .journal button:hover {
+            background-color: #4e9a06;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #f0f8ff;
+            color: #888;
+        }
+
+        .activity-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .activity-list li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-left: 5px solid #6bbf59;
+        }
+
+        .activity-list h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .activity-list p {
+            margin: 5px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>悠然校园</h1>
+    </div>
+
+    <div class="nav">
+        <a href="#intro">简介</a>
+        <a href="#upload">上传课表</a>
+        <a href="#recommend">活动推荐</a>
+        <a href="#journal">心情日志</a>
+    </div>
+
+    <div class="container">
+
+        <div id="intro" class="section">
+            <h2>产品简介</h2>
+            <p>这是一款基于校园生活的活动规划及记录小程序，旨在帮助同学们通过健康、积极的课外活动缓解科研和学习的压力。</p>
+            <p>同学们可以上传自己的一周课表和任务计划，系统会根据空闲时间智能推荐适合的心理座谈、运动健身、文娱活动和户外运动（如钓鱼、爬山等）。</p>
+            <p>在活动中，同学们可以与其他有相同兴趣或需求的同学组局参与，还可以通过系统打卡、上传照片记录每次活动后的心情状态，形成个人成长日志。</p>
+            <p>通过这些正向的课外活动，系统帮助同学们减轻焦虑，放松身心，找到属于自己的“躺平”节奏，以健康的方式平衡学习与生活。</p>
+        </div>
+
+        <div id="upload" class="section">
+            <h2>上传课表和任务计划</h2>
+            <div class="upload-form">
+                <label for="schedule">上传一周课表：</label>
+                <input type="file" id="schedule" name="schedule">
+                <label for="tasks">上传任务计划：</label>
+                <input type="file" id="tasks" name="tasks">
+                <button onclick="simulateUpload()">提交</button>
+            </div>
+        </div>
+
+        <div id="recommend" class="section">
+            <h2>智能活动推荐</h2>
+            <div class="recommendation">
+                <button onclick="recommendActivities()">点击获取推荐活动</button>
+                <div class="activity-list" id="activity-list"></div>
+            </div>
+        </div>
+
+        <div id="journal" class="section">
+            <h2>心情日志</h2>
+            <div class="journal">
+                <label for="mood">记录您的心情：</label>
+                <textarea id="mood" rows="5" placeholder="写下您的心情..."></textarea>
+                <button onclick="saveMood()">保存</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        &copy; 2024 悠然校园
+    </div>
+
+    <script>
+        function simulateUpload() {
+            alert("课表和任务计划上传成功！");
+        }
+
+        function recommendActivities() {
+            const activities = [
+                {
+                    title: "周三心理座谈会",
+                    description: "与专业心理咨询师面对面，缓解压力。"
+                },
+                {
+                    title: "周五夜跑",
+                    description: "一起跑步，强身健体。"
+                },
+                {
+                    title: "周末爬山活动",
+                    description: "亲近自然，放松身心。"
+                },
+                {
+                    title: "电影之夜",
+                    description: "观看经典影片，享受文娱时光。"
+                }
+            ];
+
+            const activityList = document.getElementById('activity-list');
+            activityList.innerHTML = '';
+
+            activities.forEach(activity => {
+                const activityItem = document.createElement('li');
+                const activityTitle = document.createElement('h3');
+                activityTitle.textContent = activity.title;
+                const activityDesc = document.createElement('p');
+                activityDesc.textContent = activity.description;
+
+                activityItem.appendChild(activityTitle);
+                activityItem.appendChild(activityDesc);
+                activityList.appendChild(activityItem);
+            });
+        }
+
+        function saveMood() {
+            const moodText = document.getElementById('mood').value;
+            if(moodText.trim() === '') {
+                alert("请填写您的心情！");
+            } else {
+                alert("心情日志已保存！");
+                document.getElementById('mood').value = '';
+            }
+        }
+    </script>
+
+</body>
+</html>
