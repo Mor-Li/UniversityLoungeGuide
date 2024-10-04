@@ -24,8 +24,14 @@
             margin: 0;
         }
 
+        /* 调整后的导航栏样式 */
         .nav {
             background-color: #4e9a06;
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
             overflow: hidden;
         }
 
@@ -147,7 +153,7 @@
         }
 
         .share-item img {
-            max-width: 100%;
+            max-width: 50%;
             height: auto;
             margin-bottom: 5px;
         }
@@ -209,11 +215,14 @@
         <h1>悠然校园</h1>
     </div>
 
+    <!-- 调整后的导航栏 -->
     <div class="nav">
-        <a href="#intro">简介</a>
-        <a href="#upload">上传课表</a>
-        <a href="#recommend">活动推荐</a>
-        <a href="#journal">心情日志</a>
+        <div class="nav-inner">
+            <a href="#intro">简介</a>
+            <a href="#upload">上传课表</a>
+            <a href="#recommend">活动推荐</a>
+            <a href="#journal">心情日志</a>
+        </div>
     </div>
 
     <div class="container">
@@ -283,12 +292,12 @@
                         {
                             user: "小明",
                             content: "参加了座谈会，感觉心情好多了！",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/counseling-1.png"  // 本地心理咨询场景
                         },
                         {
                             user: "小红",
                             content: "和大家一起交流，收获颇丰。",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/counseling-2.png"  // 本地交流会场景
                         }
                     ]
                 },
@@ -299,12 +308,12 @@
                         {
                             user: "小刚",
                             content: "夜跑5公里，流汗的感觉真好！",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/night-run-1.png"  // 本地夜跑场景
                         },
                         {
                             user: "小丽",
                             content: "第一次参加夜跑，认识了很多新朋友。",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/night-run-2.png"  // 本地跑步朋友场景
                         }
                     ]
                 },
@@ -315,12 +324,12 @@
                         {
                             user: "小王",
                             content: "山顶的风景太美了！",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/mountain-1.png"  // 本地爬山风景
                         },
                         {
                             user: "小赵",
                             content: "虽然有点累，但很值得。",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/mountain-2.png"  // 本地爬山活动
                         }
                     ]
                 },
@@ -331,12 +340,12 @@
                         {
                             user: "小孙",
                             content: "电影很感人，期待下次活动。",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/movie-1.png"  // 本地电影之夜场景
                         },
                         {
                             user: "小周",
                             content: "和大家一起看电影的感觉很棒！",
-                            image: "https://via.placeholder.com/150"
+                            image: "src/movie-2.png"  // 本地电影观看场景
                         }
                     ]
                 }
