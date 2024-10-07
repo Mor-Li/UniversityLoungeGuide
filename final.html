@@ -11,14 +11,27 @@
             background-color: #f0f2f5;
         }
 
+        /* 页面主标题 */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #3498db;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
         /* 导航栏样式 */
         .navbar {
             display: flex;
             background-color: #3498db;
             justify-content: space-around;
             align-items: center;
-            padding: 10px 0;
             flex-wrap: wrap;
+            position: sticky;
+            top: 60px; /* 与header的高度匹配 */
+            z-index: 999;
         }
 
         .navbar a {
@@ -39,7 +52,7 @@
             border-bottom: 3px solid #e74c3c;
         }
 
-        /* 内容区域样式 */
+
         .tab-content {
             display: none;
         }
@@ -48,27 +61,33 @@
             display: block;
         }
 
-        /* 适应iframe内容的高度 */
+        /* 调整 iframe 的高度 */
         iframe {
             width: 100%;
-            height: calc(100vh - 120px); /* 减去导航栏和标题的高度 */
+            height: calc(100vh - 120px); /* 减去标题和导航栏的高度 */
             border: none;
+            display: block;
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
+                top: 80px; /* 调整以适应移动设备 */
             }
             .navbar a {
                 width: 100%;
                 text-align: center;
                 margin: 0;
             }
+            /* 调整 iframe 高度以适应移动设备 */
+            iframe {
+                height: calc(100vh - 140px); /* 适当调整高度 */
+            }
         }
     </style>
     <script>
-        // JavaScript代码，用于切换选项卡
+        // JavaScript 代码，用于切换选项卡
         document.addEventListener("DOMContentLoaded", function() {
             const tabs = document.querySelectorAll(".navbar a");
             const contents = document.querySelectorAll(".tab-content");
@@ -97,7 +116,7 @@
 <body>
 
     <!-- 页面主标题 -->
-    <header style="text-align: center; padding: 20px 0; background-color: #3498db; color: white;">
+    <header>
         <h1>大学躺平指南</h1>
     </header>
 
@@ -111,20 +130,22 @@
     </div>
 
     <!-- 内容区域 -->
-    <div id="task1" class="tab-content">
-        <iframe src="./task1.html"></iframe>
-    </div>
-    <div id="task2" class="tab-content">
-        <iframe src="./task2.html"></iframe>
-    </div>
-    <div id="task3" class="tab-content">
-        <iframe src="./task3.html"></iframe>
-    </div>
-    <div id="task4" class="tab-content">
-        <iframe src="./task4.html"></iframe>
-    </div>
-    <div id="task5" class="tab-content">
-        <iframe src="./task5.html"></iframe>
+    <div class="content">
+        <div id="task1" class="tab-content">
+            <iframe src="./task1.html"></iframe>
+        </div>
+        <div id="task2" class="tab-content">
+            <iframe src="./task2.html"></iframe>
+        </div>
+        <div id="task3" class="tab-content">
+            <iframe src="./task3.html"></iframe>
+        </div>
+        <div id="task4" class="tab-content">
+            <iframe src="./task4.html"></iframe>
+        </div>
+        <div id="task5" class="tab-content">
+            <iframe src="./task5.html"></iframe>
+        </div>
     </div>
 
 </body>
