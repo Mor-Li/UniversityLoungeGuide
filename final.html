@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>大学躺平指南</title>
+    <style>
+        /* 通用样式 */
+        body {
+            margin: 0;
+            font-family: "微软雅黑", sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            background-color: #3498db;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #2980b9;
+        }
+
+        .navbar a.active {
+            background-color: #2980b9;
+            border-bottom: 3px solid #e74c3c;
+        }
+
+        /* 内容区域样式 */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 适应iframe内容的高度 */
+        iframe {
+            width: 100%;
+            height: calc(100vh - 120px); /* 减去导航栏和标题的高度 */
+            border: none;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            .navbar a {
+                width: 100%;
+                text-align: center;
+                margin: 0;
+            }
+        }
+    </style>
+    <script>
+        // JavaScript代码，用于切换选项卡
+        document.addEventListener("DOMContentLoaded", function() {
+            const tabs = document.querySelectorAll(".navbar a");
+            const contents = document.querySelectorAll(".tab-content");
+
+            tabs.forEach(tab => {
+                tab.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute("href").substring(1);
+
+                    // 移除所有选项卡和内容的激活状态
+                    tabs.forEach(t => t.classList.remove("active"));
+                    contents.forEach(c => c.classList.remove("active"));
+
+                    // 激活当前选项卡和对应的内容
+                    this.classList.add("active");
+                    document.getElementById(target).classList.add("active");
+                });
+            });
+
+            // 默认激活第一个选项卡
+            tabs[0].classList.add("active");
+            contents[0].classList.add("active");
+        });
+    </script>
+</head>
+<body>
+
+    <!-- 页面主标题 -->
+    <header style="text-align: center; padding: 20px 0; background-color: #3498db; color: white;">
+        <h1>大学躺平指南</h1>
+    </header>
+
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <a href="#task1">学生任务管理系统</a>
+        <a href="#task2">个性化职业发展规划服务</a>
+        <a href="#task3">毕业通—你的安全躺平指南</a>
+        <a href="#task4">朋辈交流树洞</a>
+        <a href="#task5">悠然校园：校园生活活动规划与记录</a>
+    </div>
+
+    <!-- 内容区域 -->
+    <div id="task1" class="tab-content">
+        <iframe src="./task1.html"></iframe>
+    </div>
+    <div id="task2" class="tab-content">
+        <iframe src="./task2.html"></iframe>
+    </div>
+    <div id="task3" class="tab-content">
+        <iframe src="./task3.html"></iframe>
+    </div>
+    <div id="task4" class="tab-content">
+        <iframe src="./task4.html"></iframe>
+    </div>
+    <div id="task5" class="tab-content">
+        <iframe src="./task5.html"></iframe>
+    </div>
+
+</body>
+</html>
